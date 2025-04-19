@@ -1,4 +1,5 @@
 *Stock Data Visualizer*
+
 This project is a web application built using Flask that allows users to visualize stock data over different time periods (daily, weekly, or monthly). The data is retrieved from the Alpha Vantage API and displayed as either a line or bar chart.
 
 Features
