@@ -1,4 +1,5 @@
 import os
+import csv
 from flask import Flask, render_template, request
 import requests
 import pygal
@@ -6,7 +7,24 @@ from datetime import datetime
 
 app = Flask(__name__)
 
+# Ensure the static folder is available
+app.config['STATIC_FOLDER'] = os.path.join(os.getcwd(), 'static')
+
+# Alpha Vantage API key from environment variable
 ALPHA_VANTAGE_API_KEY = os.getenv('ALPHA_VANTAGE_API_KEY')
+
+# Load stock symbols from the CSV (you can adjust the path to where you extract them)
+def load_stock_symbols():
+    stock_symbols = []
+    try:
+        with open('stocks.csv', newline='') as csvfile:
+            csvreader = csv.reader(csvfile)
+            next(csvreader)  # Skip the header row
+            for row in csvreader:
+                stock_symbols.append(row[0])  # Assuming stock symbol is the first column
+    except Exception as e:
+        print(f"Error loading CSV: {e}")
+    return stock_symbols
 
 def fetch_stock_data(symbol, series, start_date, end_date):
     if not ALPHA_VANTAGE_API_KEY:
@@ -47,14 +65,16 @@ def generate_chart(data, series):
     for date_str, values in data.items():
         chart.add(date_str, [float(values['4. close'])])
 
-    chart.render_in_browser()
-    return chart
+    chart_uri = f"static/{data}_chart.svg"  # Change to a dynamic path
+    chart.render(outfile=chart_uri)
+    return chart_uri
 
 @app.route("/", methods=["GET", "POST"])
 def index():
     chart_uri = None
     error = None
-    
+    stocks = load_stock_symbols()  # Load the symbols from the CSV file
+
     if request.method == "POST":
         symbol = request.form.get("symbol")
         series = request.form.get("series")
@@ -66,11 +86,9 @@ def index():
         else:
             stock_data, error = fetch_stock_data(symbol, series, start_date, end_date)
             if stock_data:
-                chart = generate_chart(stock_data, series)
-                chart_uri = f"static/{symbol}_{series}_chart.svg"
-                chart.render(outfile=chart_uri)
+                chart_uri = generate_chart(stock_data, series)
     
-    return render_template("index.html", chart_uri=chart_uri, error=error)
+    return render_template("index.html", chart_uri=chart_uri, error=error, stocks=stocks)
 
 if __name__ == "__main__":
     app.run(debug=True)
