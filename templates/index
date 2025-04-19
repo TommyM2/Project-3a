@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Stock Viewer</title>
+</head>
+<body>
+    <h1>Stock Data Visualizer</h1>
+    <form method="POST">
+        <label>Stock Symbol:</label>
+        <input name="symbol" required><br><br>
+
+        <label>Time Series:</label>
+        <select name="series">
+            <option value="Daily">Daily</option>
+            <option value="Weekly">Weekly</option>
+            <option value="Monthly">Monthly</option>
+        </select><br><br>
+
+        <label>Chart Type:</label>
+        <select name="chart">
+            <option value="Line">Line</option>
+            <option value="Bar">Bar</option>
+        </select><br><br>
+
+        <label>Start Date:</label>
+        <input type="date" name="start" required><br><br>
+
+        <label>End Date:</label>
+        <input type="date" name="end" required><br><br>
+
+        <input type="submit" value="Generate Chart">
+    </form>
+
+    {% if chart_uri %}
+        <h2>Results for {{ symbol }}</h2>
+        <embed type="image/svg+xml" src="{{ chart_uri }}" />
+    {% elif error %}
+        <p style="color:red;">{{ error }}</p>
+    {% endif %}
+</body>
+</html>
