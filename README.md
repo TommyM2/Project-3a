@@ -1,24 +1,20 @@
-*Stock Data Visualizer*
+# Stock Data Visualizer
 
 This project is a web application built using Flask that allows users to visualize stock data over different time periods (daily, weekly, or monthly). The data is retrieved from the Alpha Vantage API and displayed as either a line or bar chart.
 
-Features
-Users can enter a stock symbol to retrieve stock data.
+## Features
 
-The user can select the time series (Daily, Weekly, or Monthly).
+- Users can enter a stock symbol to retrieve stock data.
+- The user can select the time series (Daily, Weekly, or Monthly).
+- The user can choose the type of chart (Line or Bar).
+- Users can specify a start and end date for the stock data they want to visualize.
+- Displays the chart dynamically based on user input.
 
-The user can choose the type of chart (Line or Bar).
+## Requirements
 
-Users can specify a start and end date for the stock data they want to visualize.
-
-Displays the chart dynamically based on user input.
-
-Requirements
 Before running the application, ensure you have the required Python libraries installed. You can install them using pip:
 
-bash
-Copy
-Edit
+```bash
 pip install -r requirements.txt
 The required libraries are:
 
@@ -31,23 +27,16 @@ pygal==3.0.4
 Setup
 Clone this repository:
 
-bash
-Copy
-Edit
 git clone https://github.com/GMast3rs/Project_3-_Stock_Data_Visualizer.git
 cd Project_3-_Stock_Data_Visualizer
 Install the necessary dependencies:
 
-bash
-Copy
-Edit
 pip install -r requirements.txt
+
 To run the application, use:
 
-bash
-Copy
-Edit
 python app.py
+
 The app will be available at http://127.0.0.1:5000/.
 
 GitHub Repository
@@ -97,11 +86,3 @@ Notes
 This application uses the Alpha Vantage API to fetch stock data, so there might be rate limits for requests (check Alpha Vantage's documentation for more details).
 
 The chart is generated using the Pygal library and displayed in the browser.
-
-Summary of Changes:
-API Key section now includes more specific instructions on where to put the API key in the app.py file.
-
-Minor formatting improvements.
-
-
-
