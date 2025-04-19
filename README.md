@@ -84,4 +84,23 @@ This application uses the Alpha Vantage API to fetch stock data, so there might 
 
 The chart is generated using the Pygal library and displayed in the browser.
 
+### Explanation of Key Sections:
+
+1. **Project Overview**:
+   The first part of the `README.md` provides a description of the project and its features, so users and reviewers know what the project is about and what it can do.
+
+2. **Requirements**:
+   Lists the dependencies that need to be installed to run the project (`Flask`, `requests`, `pygal`).
+
+3. **Setup**:
+   Explains how to clone the project, install the dependencies, and run the application locally.
+
+4. **GitHub Repository**:
+   Provides the link to your GitHub repository where the source code is hosted.
+
+5. **Features**:
+   Outlines how users can interact with the app (input stock symbol, select time series, choose chart type, etc.).
+
+6. **API Key**:
+   Instructs users on how to get and use an API key from Alpha Vantage.
 
