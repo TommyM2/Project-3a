@@ -1,20 +1,23 @@
-# Stock Data Visualizer
-
+Stock Data Visualizer
 This project is a web application built using Flask that allows users to visualize stock data over different time periods (daily, weekly, or monthly). The data is retrieved from the Alpha Vantage API and displayed as either a line or bar chart.
 
-## Features
+Features
+Users can enter a stock symbol to retrieve stock data.
 
-- Users can enter a stock symbol to retrieve stock data.
-- The user can select the time series (Daily, Weekly, or Monthly).
-- The user can choose the type of chart (Line or Bar).
-- Users can specify a start and end date for the stock data they want to visualize.
-- Displays the chart dynamically based on user input.
+The user can select the time series (Daily, Weekly, or Monthly).
 
-## Requirements
+The user can choose the type of chart (Line or Bar).
 
-Before running the application, ensure you have the required Python libraries installed. You can install them using `pip`:
+Users can specify a start and end date for the stock data they want to visualize.
 
-```bash
+Displays the chart dynamically based on user input.
+
+Requirements
+Before running the application, ensure you have the required Python libraries installed. You can install them using pip:
+
+bash
+Copy
+Edit
 pip install -r requirements.txt
 The required libraries are:
 
@@ -48,7 +51,6 @@ The app will be available at http://127.0.0.1:5000/.
 
 GitHub Repository
 You can access the complete project code in the GitHub repository:
-
 Project_3_Stock_Data_Visualizer
 
 Features
@@ -75,32 +77,30 @@ Date Range
 Input the start and end dates for which you want to see the stock data. The dates should be in the YYYY-MM-DD format.
 
 API Key
-In order to use the Alpha Vantage API, you need to get a free API key. You can obtain it from Alpha Vantage API.
+In order to use the Alpha Vantage API, you need to get a free API key. You can obtain it from the Alpha Vantage API.
 
-Once you have your API key, replace "your_api_key_here" with your actual key in the app.py file.
+How to Use Your API Key:
+Get your free API key from Alpha Vantage.
+
+Open app.py in your project folder.
+
+Find the line that says:
+
+python
+Copy
+Edit
+api_key = "your_api_key_here"
+Replace "your_api_key_here" with your actual API key.
 
 Notes
-This application uses the Alpha Vantage API to fetch stock data, so there might be rate limits for requests.
+This application uses the Alpha Vantage API to fetch stock data, so there might be rate limits for requests (check Alpha Vantage's documentation for more details).
 
 The chart is generated using the Pygal library and displayed in the browser.
 
-### Explanation of Key Sections:
+Summary of Changes:
+API Key section now includes more specific instructions on where to put the API key in the app.py file.
 
-1. **Project Overview**:
-   The first part of the `README.md` provides a description of the project and its features, so users and reviewers know what the project is about and what it can do.
+Minor formatting improvements.
 
-2. **Requirements**:
-   Lists the dependencies that need to be installed to run the project (`Flask`, `requests`, `pygal`).
 
-3. **Setup**:
-   Explains how to clone the project, install the dependencies, and run the application locally.
-
-4. **GitHub Repository**:
-   Provides the link to your GitHub repository where the source code is hosted.
-
-5. **Features**:
-   Outlines how users can interact with the app (input stock symbol, select time series, choose chart type, etc.).
-
-6. **API Key**:
-   Instructs users on how to get and use an API key from Alpha Vantage.
 
