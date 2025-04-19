@@ -1,41 +1,53 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Stock Viewer</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stock Data Visualizer</title>
 </head>
 <body>
     <h1>Stock Data Visualizer</h1>
-    <form method="POST">
-        <label>Stock Symbol:</label>
-        <input name="symbol" required><br><br>
 
-        <label>Time Series:</label>
-        <select name="series">
+    <!-- Form to submit stock query -->
+    <form method="POST">
+        <label for="symbol">Stock Symbol:</label>
+        <select name="symbol" id="symbol" required>
+            <!-- Dynamically populated stock symbols from Flask -->
+            {% for stock in stocks %}
+                <option value="{{ stock }}">{{ stock }}</option>
+            {% endfor %}
+        </select><br><br>
+
+        <label for="series">Time Series:</label>
+        <select name="series" id="series" required>
             <option value="Daily">Daily</option>
             <option value="Weekly">Weekly</option>
             <option value="Monthly">Monthly</option>
         </select><br><br>
 
-        <label>Chart Type:</label>
-        <select name="chart">
+        <label for="chart">Chart Type:</label>
+        <select name="chart" id="chart" required>
             <option value="Line">Line</option>
             <option value="Bar">Bar</option>
         </select><br><br>
 
-        <label>Start Date:</label>
-        <input type="date" name="start" required><br><br>
+        <label for="start">Start Date:</label>
+        <input type="date" name="start" id="start" required><br><br>
 
-        <label>End Date:</label>
-        <input type="date" name="end" required><br><br>
+        <label for="end">End Date:</label>
+        <input type="date" name="end" id="end" required><br><br>
 
         <input type="submit" value="Generate Chart">
     </form>
 
     {% if chart_uri %}
         <h2>Results for {{ symbol }}</h2>
-        <embed type="image/svg+xml" src="{{ chart_uri }}" />
+        <!-- Render the chart as an embedded image -->
+        <img src="{{ chart_uri }}" alt="Stock chart" style="width:100%; max-width:800px;">
     {% elif error %}
+        <!-- Display error messages -->
         <p style="color:red;">{{ error }}</p>
     {% endif %}
 </body>
 </html>
+
